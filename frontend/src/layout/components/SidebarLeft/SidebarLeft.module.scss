@@ -1,7 +1,27 @@
 .wrapper {
-    background-color: #4ea3fd;
+    background-color: #22354e;
     position: absolute;
     left: 0;
-    width: 300px;
+    width: var(--default-layout-sidebar-width);
     height: 100%;
+}
+
+.logo-link {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding-top: 8px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.text {
+    font-size: 3.6rem;
+    font-weight: 700;
+    background: linear-gradient(#1f6aff, #c224ff);
+    background-clip: text;
+    color: transparent;
+    text-decoration: none;
+    padding-left: 4px;
+    align-self: center;
 }

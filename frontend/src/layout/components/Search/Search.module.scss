@@ -1,0 +1,110 @@
+.wrapper {
+    --search-border-radius: 92px;
+    --search-height: 40px;
+    --search-top-spacer: 9px;
+    --search-bottom-width: 52px;
+    --primary-color: #dadada;
+
+    position: fixed;
+    top: 0;
+    left: var(--default-layout-sidebar-width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--default-layout-width);
+    z-index: 10;
+    height: var(--default-layout-header-height, 60px);
+    box-shadow: 0px 1px 1px rbg(0 0 0 / 12%);
+    display: flex;
+    justify-self: center;
+}
+
+.search,
+.search-results {
+    width: 540px;
+}
+
+.search {
+    display: flex;
+    position: absolute;
+    height: var(--search-height);
+    background-color: rgba(22, 24, 35, 0.006);
+    border-radius: var(--search-border-radius);
+    border: 1.5px solid transparent;
+    background-color: #273143;
+
+    input {
+        flex: 1;
+        padding: 5px 40px 5px 0;
+        height: 100%;
+        color: var(--primary-color);
+        font-size: 1.6rem;
+        caret-color: var(--primary-color);
+        background-color: transparent;
+    }
+
+    input::placeholder {
+        color: var(--primary-color);
+        opacity: 0.75;
+    }
+
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: var(--primary-color);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: var(--search-top-spacer);
+        left: var(--search-bottom-width);
+        width: 1px;
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+
+.clear,
+.loading {
+    position: absolute;
+    right: calc(var(--search-bottom-width) - 36px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    background-color: transparent;
+}
+
+.loading {
+    animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: translateY(-50%) rotate(0);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+.search-btn {
+    width: var(--search-bottom-width);
+    height: 100%;
+    border-top-left-radius: var(--search-border-radius);
+    border-bottom-left-radius: var(--search-border-radius);
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    background-color: inherit;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+
+    &:active {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+}

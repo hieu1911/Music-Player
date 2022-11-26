@@ -1,7 +1,7 @@
 .wrapper {
-    background-color: #4ea3fd;
+    background-color: #22354e;
     position: absolute;
     right: 0;
-    width: 300px;
+    width: var(--default-layout-sidebar-width);
     height: 100%;
 }

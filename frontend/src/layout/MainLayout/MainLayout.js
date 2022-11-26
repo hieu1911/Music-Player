@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import Header from '../components/Header/Header';
+import Search from '../components/Search/Search';
 import SidebarLeft from '../components/SidebarLeft/SidebarLeft';
 import SidebarRight from '../components/SidebarRight/SidebarRight';
 import Controller from '../components/Controller/Controller';
@@ -13,7 +13,7 @@ function MainLayout({ children }) {
             <div className={cx('body')}>
                 <SidebarLeft />
                 <div className={cx('container')}>
-                    <Header />
+                    <Search />
                     <div className={cx('content')}>{children}</div>
                 </div>
                 <SidebarRight />

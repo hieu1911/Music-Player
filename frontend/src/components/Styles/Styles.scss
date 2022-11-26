@@ -3,9 +3,9 @@
     --white: #fff;
     --text-color: #161823;
 
-    --default-layout-header-height: 60px;
-    --default-layout-sidebar-width: 330px;
-    --default-layout-width: 900px;
+    --default-layout-header-height: 70px;
+    --default-layout-sidebar-width: 300px;
+    --default-layout-width: calc(100% - var(--default-layout-sidebar-width) * 2);
     --default-layout-horizontal-spacer: 24px;
 }
 
@@ -30,6 +30,10 @@ body {
     overflow-y: overlay;
 }
 
+body > #root > div {
+    height: 100vh;
+}
+
 // scrollbar
 html *::-webkit-scrollbar {
     border-radius: 0;
@@ -51,6 +55,11 @@ input,
 [tabindex] {
     border: none;
     outline: none;
+}
+
+a[href] {
+    color: var(--text-color);
+    text-decoration: none;
 }
 
 // font embeded

@@ -1,6 +1,4 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
     height: 100%;
     width: 100%;
     align-items: center;
@@ -8,6 +6,8 @@
 
 .body {
     display: flex;
+    height: 100%;
+    width: 100%;
 }
 
 .sidebar {
@@ -15,11 +15,13 @@
 
 .container {
     display: flex;
+    position: relative;
+    left: var(--default-layout-sidebar-width);
     flex-direction: column;
     max-width: 100%;
     width: var(--default-layout-width);
     min-width: var(--default-layout-width);
-    // padding: 0 var(--default-layout-horizontal-width);
+    background-color: #162a45;
     align-items: center;
 }
 
