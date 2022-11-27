@@ -1,12 +1,13 @@
 :root {
     --black: #000;
     --white: #fff;
-    --text-color: #161823;
+    --text-color: #b3bac2;
 
     --default-layout-header-height: 70px;
     --default-layout-sidebar-width: 300px;
     --default-layout-width: calc(100% - var(--default-layout-sidebar-width) * 2);
     --default-layout-horizontal-spacer: 24px;
+    --default-layout-controller-height: 90px;
 }
 
 * {

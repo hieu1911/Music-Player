@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -15,6 +16,7 @@ import {
     faIdCard,
     faArrowRightFromBracket,
     faUserCheck,
+    faCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Menu from '../../../../components/Menu/Menu';
@@ -31,6 +33,19 @@ const SETTING_MENU = [
     {
         icon: <FontAwesomeIcon icon={faMusic} />,
         title: 'Music quality',
+        children: {
+            title: 'Music quality',
+            data: [
+                {
+                    icon: <FontAwesomeIcon icon={faCircle} />,
+                    title: 'SQ - 128',
+                },
+                {
+                    icon: <FontAwesomeIcon icon={faCircle} />,
+                    title: 'HQ - 320',
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faPlayCircle} />,
@@ -79,6 +94,7 @@ const USER_MENU = [
 ];
 
 function Header() {
+    const inputFile = useRef();
     var currentUser = true;
     const userMenu = currentUser
         ? [
@@ -95,8 +111,9 @@ function Header() {
                 <FontAwesomeIcon icon={faBell} />
             </button>
 
-            <button className={cx('upload')}>
+            <button className={cx('upload')} onClick={() => inputFile.current.click()}>
                 <FontAwesomeIcon icon={faUpload} />
+                <input type="file" id="file" accept="audio/mp3" ref={inputFile} style={{ display: 'none' }} />
             </button>
 
             <Menu items={SETTING_MENU}>

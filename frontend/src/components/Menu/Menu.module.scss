@@ -39,6 +39,20 @@
     font-weight: 300;
 }
 
+.get-children-btn,
+.back-btn {
+    color: #b3bac2;
+    width: 50px;
+    height: 100%;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.get-children-btn {
+    position: absolute;
+    right: 8px;
+}
+
 .header {
     background-color: #203d65;
     width: 200px;
@@ -58,14 +72,6 @@
         top: 16px;
         right: 0;
     }
-}
-
-.back-btn {
-    color: #b3bac2;
-    width: 50px;
-    height: 100%;
-    background-color: transparent;
-    cursor: pointer;
 }
 
 .header-title {

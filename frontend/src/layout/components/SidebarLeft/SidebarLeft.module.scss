@@ -1,9 +1,9 @@
 .wrapper {
-    background-color: #22354e;
-    position: absolute;
+    background-color: #1b2639;
+    position: fixed;
     left: 0;
     width: var(--default-layout-sidebar-width);
-    height: 100%;
+    height: 100vh;
 }
 
 .logo-link {
@@ -12,6 +12,7 @@
     align-self: center;
     padding-top: 8px;
     width: 100%;
+    margin-bottom: 20px;
     cursor: pointer;
 }
 
@@ -24,4 +25,63 @@
     text-decoration: none;
     padding-left: 4px;
     align-self: center;
+}
+
+.seperate {
+    background-color: rgba(200, 202, 204, 0.15);
+    margin-left: 24px;
+    height: 1px;
+    width: 80%;
+}
+
+.navbar-scroll {
+    height: 330px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        border-radius: 0;
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(253, 254, 254, 0.1);
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 0;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    p {
+        color: #fdfefe;
+        padding: 11px 24px;
+        line-height: 1.8rem;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+}
+
+.add-playlist {
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 0;
+    padding: 11px 24px;
+    align-items: center;
+    position: absolute;
+    border-top: 1px solid rgba(200, 202, 204, 0.15);
+    bottom: var(--default-layout-controller-height);
+    height: 54px;
+    width: 100%;
+    cursor: pointer;
+
+    span {
+        color: #fdfefe;
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+
+    span + span {
+        margin-left: 10px;
+    }
 }

@@ -1,13 +1,13 @@
 .wrapper {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    height: 90px;
+    height: var(--default-layout-controller-height);
     min-width: 768px;
     padding: 0 20px;
     background-color: var(--white);
     border-top: 1px solid var(--border-player);
 
-    background-color: #172f4f;
+    background-color: #111f3b;
     border-top: 1px solid #ffffff1a;
     width: 100%;
 }
