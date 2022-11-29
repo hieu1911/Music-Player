@@ -1,4 +1,6 @@
 .wrapper {
+    display: flex;
+    justify-content: space-between;
     position: fixed;
     bottom: 0;
     height: var(--default-layout-controller-height);
@@ -10,4 +12,135 @@
     background-color: #111f3b;
     border-top: 1px solid #ffffff1a;
     width: 100%;
+}
+
+.controls-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        height: 64px;
+        width: 64px;
+        border-radius: 8px;
+    }
+}
+
+.song-info {
+    padding: 8px;
+    max-width: 350px;
+
+    a {
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 1.6;
+        text-overflow: clip;
+        overflow: hidden;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        font-weight: 300;
+        line-height: 1.6;
+    }
+}
+
+.icon-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        height: 24px;
+        padding: 0 8px;
+    }
+}
+
+.addLibrary {
+    color: red;
+}
+
+.player-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-bar-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        font-size: 20px;
+        padding: 0 16px;
+    }
+}
+
+.player-play-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--text-color);
+}
+
+.random,
+.loop {
+    color: #158370;
+}
+
+.player-bar-time {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+
+    span {
+        font-size: 1.4rem;
+        padding: 0 12px;
+    }
+}
+
+.progress-time,
+.progress-volume {
+    width: 480px;
+    background-color: var(--text-color);
+    -webkit-appearance: none;
+    height: 3px;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 8px;
+        height: 3px;
+        background-color: var(--white);
+        cursor: pointer;
+    }
+}
+
+.controls-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+
+    span {
+        width: 20px;
+        height: 20px;
+        font-size: 1.8rem;
+        margin: 0 8px;
+    }
+}
+
+.progress-volume {
+    margin-left: 8px;
+    width: 70px;
+    height: 4px;
 }
