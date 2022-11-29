@@ -5,3 +5,24 @@
     width: var(--default-layout-sidebar-width);
     height: 100%;
 }
+
+.song {
+    height: calc(100vh - var(--default-layout-header-height));
+    overflow-y: scroll;
+    padding: 0 8px;
+
+    &::-webkit-scrollbar {
+        border-radius: 0;
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(253, 254, 254, 0.1);
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 0;
+        background-color: rgba(0, 0, 0, 0);
+    }
+}

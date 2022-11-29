@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -21,6 +21,7 @@ import {
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 import Menu from '../../../components/Menu/Menu';
+import Song from '../../../components/Song/Song';
 import styles from './Controller.module.scss';
 
 const cx = classNames.bind(styles);
@@ -57,12 +58,23 @@ const moreMenu = [
     },
 ];
 
+const data = {
+    url: '',
+    name: 'Something Just Like This',
+    artists: 'The Chainsmokers',
+};
+
 function Controller() {
     const [addLibrary, setAddLibrary] = useState(false);
     const [play, setPlay] = useState(false);
     const [random, setRandom] = useState(false);
     const [loop, setLoop] = useState(false);
     const [mute, setMute] = useState(false);
+
+    const [time, setTime] = useState(0);
+    const [volume, setVolume] = useState(0);
+
+    const inputRef = useRef([]);
 
     const handleClickPlay = () => {
         setPlay(!play);
@@ -87,11 +99,7 @@ function Controller() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('controls-left')}>
-                <img />
-                <div className={cx('song-info')}>
-                    <a>Something Just Like This</a>
-                    <h3>The Chainsmokers</h3>
-                </div>
+                <Song data={data} bigImg />
                 <div className={cx('icon-left')}>
                     <span className={cx({ addLibrary })} onClick={handleClickAdd}>
                         <FontAwesomeIcon icon={faHeart} />
@@ -125,7 +133,16 @@ function Controller() {
                 </div>
                 <div className={cx('player-bar-time')}>
                     <span className={cx('time-left')}>00:00</span>
-                    <input className={cx('progress-time')} type="range" value="0" step="1" min="0" max="100" />
+                    <input
+                        className={cx('progress-time')}
+                        type="range"
+                        ref={(el) => (inputRef.current[0] = el)}
+                        value={time}
+                        onChange={(e) => setTime(e.target.value)}
+                        step="1"
+                        min="0"
+                        max="100"
+                    />
                     <span className={cx('time-right')}>03:01</span>
                 </div>
             </div>
@@ -139,7 +156,16 @@ function Controller() {
                 <span onClick={handleClickMute}>
                     {mute ? <FontAwesomeIcon icon={faVolumeMute} /> : <FontAwesomeIcon icon={faVolumeHigh} />}
                 </span>
-                <input className={cx('progress-volume')} type="range" value="0" step="1" min="0" max="100" />
+                <input
+                    className={cx('progress-volume')}
+                    type="range"
+                    ref={(el) => (inputRef.current[1] = el)}
+                    value={volume}
+                    onChange={(e) => setVolume(e.target.value)}
+                    step="1"
+                    min="0"
+                    max="100"
+                />
             </div>
         </div>
     );

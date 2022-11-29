@@ -8,8 +8,8 @@ function Item({ data, onClick }) {
     const color = data.color;
     const id = data.id;
     return (
-        <button className={cx('menu-item', { current }, { color })} onClick={() => onClick(id)}>
-            <span className={cx('menu-icon')} style={{ backgroundColor: color }}>
+        <button className={cx('menu-item', { current })} onClick={() => onClick(id)}>
+            <span className={cx('menu-icon', { color })} style={{ backgroundColor: color }}>
                 {data.icon}
             </span>
             <span className={cx('menu-title')}>{data.title}</span>
