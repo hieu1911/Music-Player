@@ -17,10 +17,11 @@
 }
 
 .song-info {
-    padding: 0 8px;
-    max-width: 350px;
     display: flex;
     flex-direction: column;
+    padding: 0 8px;
+    max-width: 220px;
+    user-select: none;
 
     a {
         font-size: 1.6rem;
@@ -62,13 +63,14 @@
 
 .trash-can {
     padding: 4px;
+    z-index: 10;
     display: none;
     cursor: pointer;
 }
 
-.next-song-info {
+.next-song-title {
     position: relative;
-    padding: 12px 8px;
+    padding: 8px 8px;
     margin-top: 6px;
     max-width: 350px;
     text-overflow: hidden;
@@ -76,6 +78,7 @@
     font-size: 1.5rem;
     border-radius: 8px;
     background-color: #1b2639;
+    user-select: none;
 
     h3 {
         color: var(--white);

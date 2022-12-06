@@ -38,6 +38,7 @@ const songs = {
 
 function SidebarRight() {
     const [index, setIndex] = useState(-1);
+    const [del, setDel] = useState(false);
 
     const handleClick = (id) => {
         songs.data.filter((song, i) => {
@@ -49,8 +50,12 @@ function SidebarRight() {
                 song.status = 'next';
             }
         });
-        console.log(songs.data);
         setIndex(id);
+    };
+
+    const handleDelete = (id) => {
+        songs.data.splice(id, 1);
+        setDel(!del);
     };
 
     return (
@@ -65,6 +70,7 @@ function SidebarRight() {
                         status={song.status}
                         playlist={songs.playlist}
                         onClick={handleClick}
+                        onDelete={handleDelete}
                     />
                 ))}
             </div>

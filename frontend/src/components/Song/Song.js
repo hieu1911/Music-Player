@@ -6,7 +6,7 @@ import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 const cx = classNames.bind(styles);
 
-function Song({ id, data, bigImg, playlist, onClick }) {
+function Song({ id, data, bigImg, playlist, onClick, onDelete }) {
     const prev = data.status == 'prev';
     const prevSong = data.status == 'prev';
     const currentSong = data.status == 'current';
@@ -14,22 +14,22 @@ function Song({ id, data, bigImg, playlist, onClick }) {
 
     return (
         <Fragment>
-            <div className={cx('wrapper', { prevSong, currentSong, nextSong })} onClick={() => onClick(id)}>
-                <img className={cx('song-img', { bigImg })} />
-                <div className={cx('song-info')}>
+            <div className={cx('wrapper', { prevSong, currentSong, nextSong })}>
+                <img className={cx('song-img', { bigImg })} onClick={() => onClick(id)} />
+                <div className={cx('song-info')} onClick={() => onClick(id)}>
                     <a className={cx({ prev })}>{data.name}</a>
                     <h3>{data.artists}</h3>
                 </div>
                 {currentSong ? (
                     <></>
                 ) : (
-                    <span className={cx('trash-can')}>
+                    <span className={cx('trash-can')} onClick={() => onDelete(id)}>
                         <FontAwesomeIcon icon={faTrashCan} />
                     </span>
                 )}
             </div>
             {currentSong ? (
-                <div className={cx('next-song-info')}>
+                <div className={cx('next-song-title')}>
                     <h3>Next Song</h3>
                     <div>
                         <span>From </span>
