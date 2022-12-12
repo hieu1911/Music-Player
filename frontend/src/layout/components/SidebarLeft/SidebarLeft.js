@@ -32,28 +32,28 @@ const navbarMainItems = [
         icon: <FontAwesomeIcon icon={faCircleDot} />,
         title: 'Discovery',
         current: true,
-        path: './',
+        path: '/',
     },
     {
         id: 1,
         icon: <FontAwesomeIcon icon={faIcons} />,
         title: 'Individual',
         current: false,
-        path: './',
+        path: '/individula',
     },
     {
         id: 2,
         icon: <FontAwesomeIcon icon={faChartLine} />,
         title: 'Chart',
         current: false,
-        path: './',
+        path: '/chart',
     },
     {
         id: 3,
         icon: <FontAwesomeIcon icon={faListNumeric} />,
         title: 'Follow',
         current: false,
-        path: './',
+        path: '/follow',
     },
 ];
 
@@ -63,28 +63,28 @@ const navbarScrollItems = [
         icon: <FontAwesomeIcon icon={faMusic} />,
         title: 'New music',
         current: false,
-        path: './',
+        path: '/newMusic',
     },
     {
         id: 1,
         icon: <FontAwesomeIcon icon={faSymfony} />,
         title: 'Category',
         current: false,
-        path: './',
+        path: '/category',
     },
     {
         id: 2,
         icon: <FontAwesomeIcon icon={faStar} />,
         title: 'Top 100',
         current: false,
-        path: './',
+        path: '/top100',
     },
     {
         id: 3,
         icon: <FontAwesomeIcon icon={faVideo} />,
         title: 'MV',
         current: false,
-        path: './',
+        path: '/mv',
     },
 ];
 
@@ -95,7 +95,7 @@ const navbarLibraryItems = [
         title: 'Song',
         current: false,
         color: '#2d9dff',
-        path: './',
+        path: '/library/song',
     },
     {
         id: 1,
@@ -103,7 +103,7 @@ const navbarLibraryItems = [
         title: 'Playlist',
         current: false,
         color: '#93cb56',
-        path: './',
+        path: '/library/playlist',
     },
     {
         id: 2,
@@ -111,7 +111,7 @@ const navbarLibraryItems = [
         title: 'Album',
         current: false,
         color: '#447aff',
-        path: './',
+        path: '/library/album',
     },
     {
         id: 3,
@@ -119,7 +119,7 @@ const navbarLibraryItems = [
         title: 'Music Upload',
         current: false,
         color: '#fe6632',
-        path: './',
+        path: '/library/musicUpload',
     },
     {
         id: 4,
@@ -127,7 +127,7 @@ const navbarLibraryItems = [
         title: 'Music recently',
         current: false,
         color: '#fece6f',
-        path: './',
+        path: '/library/musicRecently',
     },
 ];
 
@@ -138,7 +138,6 @@ function SidebarLeft() {
     const handleClick = (item) => {
         navbar.map((nav) => {
             if (nav != item) {
-                console.log(nav);
                 nav.map((itemNav) => {
                     itemNav.current = false;
                 });
@@ -147,11 +146,23 @@ function SidebarLeft() {
         setItems(item);
     };
 
+    const handleClickLogo = () => {
+        navbar.map((nav) => {
+            nav.map((itemNav) => {
+                itemNav.current = false;
+            });
+        });
+        navbarMainItems[0].current = true;
+        setItems(navbarMainItems[0]);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <Link to={config.routes.home} className={cx('logo-link')}>
-                <img src={images.logo} alt="Music" />
-                <h2 className={cx('text')}>Music</h2>
+                <img src={images.logo} alt="Music" onClick={handleClickLogo} />
+                <h2 className={cx('text')} onClick={handleClickLogo}>
+                    Music
+                </h2>
             </Link>
             <Menu items={navbarMainItems} onClick={handleClick} />
             <div className={cx('seperate')}></div>

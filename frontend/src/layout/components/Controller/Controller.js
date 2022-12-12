@@ -2,11 +2,11 @@ import { useState, useRef } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faCircleLeft,
-    faCircleRight,
+    faBackwardStep,
     faComment,
     faEllipsis,
     faFilm,
+    faForwardStep,
     faHeart,
     faMicrophoneAlt,
     faPause,
@@ -117,7 +117,7 @@ function Controller() {
                         <FontAwesomeIcon icon={faRandom} />
                     </span>
                     <span>
-                        <FontAwesomeIcon icon={faCircleLeft} />
+                        <FontAwesomeIcon icon={faBackwardStep} />
                     </span>
                     <span onClick={handleClickPlay}>
                         <div className={cx('player-play-btn')}>
@@ -125,7 +125,7 @@ function Controller() {
                         </div>
                     </span>
                     <span>
-                        <FontAwesomeIcon icon={faCircleRight} />
+                        <FontAwesomeIcon icon={faForwardStep} />
                     </span>
                     <span className={cx({ loop })} onClick={handleClickLoop}>
                         <FontAwesomeIcon icon={faRepeat} />
