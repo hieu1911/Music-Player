@@ -8,7 +8,7 @@ function Chart() {
     const topMusic = [];
     return (
         <div className={cx('wrapper')}>
-            {topMusic.map((index, item) => (
+            {topMusic.map((item, index) => (
                 <div>
                     <span className={cx('top-song')}>{index}</span>
                     <Song key={index} data={item} />

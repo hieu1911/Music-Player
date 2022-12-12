@@ -15,10 +15,10 @@ function Song({ id, data, bigImg, playlist, onClick, onDelete }) {
     return (
         <Fragment>
             <div className={cx('wrapper', { prevSong, currentSong, nextSong })}>
-                <img className={cx('song-img', { bigImg })} onClick={() => onClick(id)} />
+                <img className={cx('song-img', { bigImg })} src={data.thumbnail} onClick={() => onClick(id)} />
                 <div className={cx('song-info')} onClick={() => onClick(id)}>
-                    <a className={cx({ prev })}>{data.name}</a>
-                    <h3>{data.artists}</h3>
+                    <a className={cx({ prev })}>{data.title}</a>
+                    <h3>{data.artistsNames}</h3>
                 </div>
                 {currentSong ? (
                     <></>

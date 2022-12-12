@@ -1,0 +1,59 @@
+.wrapper {
+    margin: 20px 40px;
+}
+
+.title {
+    color: var(--white);
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.item-wrapper {
+    display: flex;
+    padding: 4px;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 6px;
+
+    &:hover {
+        background-color: #3d4656;
+    }
+}
+
+.top-song {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    display: flex;
+    justify-content: flex-end;
+    width: 60px;
+    font-size: 4rem;
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--white);
+    margin-right: 12px;
+}
+
+.top1 {
+    -webkit-text-stroke: 2px #1374ec;
+}
+
+.top2 {
+    -webkit-text-stroke: 2px #15dbc4;
+}
+
+.top3 {
+    -webkit-text-stroke: 2px #d82036;
+}
+
+.song {
+    width: 460px;
+}
+
+.album {
+    font-size: 1.3rem;
+    width: 320px;
+    text-overflow: ellipsis;
+}
+
+.time {
+    font-size: 1.4rem;
+}

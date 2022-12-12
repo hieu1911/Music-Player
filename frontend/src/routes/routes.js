@@ -22,7 +22,7 @@ const publicRoutes = [
     { path: config.routes.category, component: Category },
     { path: config.routes.top100, component: Top100 },
     { path: config.routes.mv, component: MV },
-    { path: config.routes.librarySong, component: LibrarySong },
+    { path: config.routes.song, component: LibrarySong },
     { path: config.routes.playlist, component: Playlist },
     { path: config.routes.album, component: Album },
     { path: config.routes.musicUpload, component: MusicUpload },

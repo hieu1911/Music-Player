@@ -18,11 +18,18 @@
     position: relative;
     left: var(--default-layout-sidebar-width);
     flex-direction: column;
+    height: calc(100% - var(--default-layout-controller-height));
     max-width: 100%;
     width: var(--default-layout-width);
     min-width: var(--default-layout-width);
+    max-width: var(--default-layout-width);
     background-color: #0f1a2e;
     align-items: center;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .content {

@@ -61,7 +61,7 @@ function SidebarRight() {
     return (
         <div className={cx('wrapper')}>
             <Header />
-            <div className={cx('song')}>
+            {/* <div className={cx('song')}>
                 {songs.data.map((song, index) => (
                     <Song
                         key={index}
@@ -73,7 +73,7 @@ function SidebarRight() {
                         onDelete={handleDelete}
                     />
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 }
