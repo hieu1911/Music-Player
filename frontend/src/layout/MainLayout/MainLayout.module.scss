@@ -15,11 +15,10 @@
 
 .container {
     display: flex;
-    position: relative;
+    position: fixed;
     left: var(--default-layout-sidebar-width);
     flex-direction: column;
     height: calc(100% - var(--default-layout-controller-height));
-    max-width: 100%;
     width: var(--default-layout-width);
     min-width: var(--default-layout-width);
     max-width: var(--default-layout-width);
@@ -35,4 +34,5 @@
 .content {
     flex: 1;
     margin-top: var(--default-layout-header-height);
+    width: 100%;
 }
