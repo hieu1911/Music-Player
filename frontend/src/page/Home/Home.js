@@ -19,8 +19,7 @@ function Home() {
             let response = await api.getHome();
             let results = response.data.data.items;
             setApiHome(results)
-
-            console.log(results)
+            // console.log(results)
         }
 
         fetchApiHome()
@@ -33,7 +32,6 @@ function Home() {
     const newReleaseItems = newRelease ? newRelease.items : {}
     
     const playlist = apiHome.filter(item => item.sectionType == 'playlist')
-    console.log(playlist)
 
     return <div className={cx('wrapper')}>
         <div className={cx('gallery')}>

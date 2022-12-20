@@ -1,7 +1,7 @@
 import config from '../config/config.js';
 import Home from '../page/Home/Home';
 import Individula from '../page/Individula/Individual';
-import Chart from '../page/Chart/Chart';
+import ChartPage from '../page/Chart/Chart';
 import Follow from '../page/Follow/Follow';
 import NewMusic from '../page/NewMusic/NewMusic';
 import Category from '../page/Category/Category';
@@ -16,7 +16,7 @@ import MusicRecently from '../page/MusicRecently/MusicRecently';
 const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.individula, component: Individula },
-    { path: config.routes.chart, component: Chart },
+    { path: config.routes.chart, component: ChartPage },
     { path: config.routes.follow, component: Follow },
     { path: config.routes.newMusic, component: NewMusic },
     { path: config.routes.category, component: Category },
