@@ -16,6 +16,7 @@
 }
 
 .top-song-wrapper {
+    padding: 20px;
     .item-wrapper {
         display: flex;
         padding: 2px 8px;
@@ -56,6 +57,9 @@
 
 .weekly-chart {
     color: var(--white);
+    background-color: #12203d;
+    margin-top: 12px;
+    padding: 8px 0 20px;
 
     .title {
         font-size: 3.6rem;
@@ -68,7 +72,6 @@
     justify-content: space-between;
     margin: 0;
     padding: 8px;
-    background-color: #12203d;
 
     h4 {
         font-size: 2.4rem;

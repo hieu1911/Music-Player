@@ -54,3 +54,16 @@ export const getNewReleaseChart = () =>
             reject(err);
         }
     });
+
+export const getTop100 = () =>
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: '/top100',
+                method: 'GET'
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    })
