@@ -1,3 +1,7 @@
+const jsonServer = require('json-server');
+const r = jsonServer.router('category.json')
+
+
 const path = require('path')
 const express = require("express")
 require('dotenv').config()
@@ -13,6 +17,9 @@ app.get("/", (req, res) => {
 // ZingMp3Router
 const ZingMp3Router = require("./src/routes/ZingRouter")
 app.use("/api", cors({ origin: '*' }), ZingMp3Router)
+
+// ZingMp3Router Category
+app.use("/api", cors({ origin: '*' }), r)
 
 // Page Error
 app.get("*", (req, res) => {

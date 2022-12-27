@@ -1,0 +1,34 @@
+.wrapper {
+    padding: 24px;
+}
+
+.banner {
+    img {
+        width: 100%;
+        border-radius: 6px;
+    }
+}
+
+h3 {
+    color: var(--white);
+    font-weight: 700;
+    font-size: 2.4rem;
+    margin-top: 16px;
+}
+
+.wrapper-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 20px 0;
+
+    img {
+        width: 280px;
+        border-radius: 4px;
+    }
+}
+
+.genre-item {
+   display: flex;
+   justify-content: space-between;
+   padding: 10px 0 20px 0;
+}

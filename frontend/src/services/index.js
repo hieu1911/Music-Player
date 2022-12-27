@@ -67,3 +67,29 @@ export const getTop100 = () =>
             reject(err)
         }
     })
+
+export const getListMV = () =>
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: '/listmv',
+                method: 'GET'
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    })
+
+export const getCategory = () =>
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: '/category',
+                method: 'GET'
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    })
