@@ -1,0 +1,50 @@
+.wrapper {
+    
+}
+
+.image-mv {
+    width: 405px;
+    height: 225px;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.04) translateZ(0);
+    }
+}
+
+.info {
+    display: flex;
+    padding: 4px 0;
+    
+    div {
+        display: flex;
+        flex-direction: column;
+        padding: 0 6px;
+    }
+}
+
+.image-artist {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.name-mv, .name-artist {
+    width: 320px;
+    height: 24px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+.name-mv {
+    font-size: 1.4rem;
+    color: var(--white);
+    font-weight: 700;
+}
+
+.name-artist {
+    font-size: 1.2rem;
+}

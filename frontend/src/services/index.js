@@ -93,3 +93,16 @@ export const getCategory = () =>
             reject(err)
         }
     })
+
+export const getMV = () => 
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: `/mv`,
+                method: 'GET'
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    })

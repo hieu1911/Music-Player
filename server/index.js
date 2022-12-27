@@ -1,6 +1,5 @@
 const jsonServer = require('json-server');
-const r = jsonServer.router('category.json')
-
+const r = jsonServer.router('db.json')
 
 const path = require('path')
 const express = require("express")
@@ -18,7 +17,7 @@ app.get("/", (req, res) => {
 const ZingMp3Router = require("./src/routes/ZingRouter")
 app.use("/api", cors({ origin: '*' }), ZingMp3Router)
 
-// ZingMp3Router Category
+// ZingMp3Router Fake Api
 app.use("/api", cors({ origin: '*' }), r)
 
 // Page Error

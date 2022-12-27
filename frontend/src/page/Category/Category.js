@@ -15,7 +15,7 @@ function Category() {
         const fetchDataCategory = async () => {
             const response = await api.getCategory()
             const results = response.data[0].data
-            console.log(results)
+            // console.log(results)
             setCategoryApi(results)
         }
 
