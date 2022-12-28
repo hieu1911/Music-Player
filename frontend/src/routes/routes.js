@@ -1,6 +1,5 @@
 import config from '../config/config.js';
 import Home from '../page/Home/Home';
-import Individula from '../page/Individula/Individual';
 import ChartPage from '../page/Chart/Chart';
 import Radio from '../page/Radio/Radio';
 import NewMusic from '../page/NewMusic/NewMusic';
@@ -15,7 +14,7 @@ import MusicRecently from '../page/MusicRecently/MusicRecently';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
-    { path: config.routes.individula, component: Individula },
+    { path: config.routes.individula, component: LibrarySong },
     { path: config.routes.chart, component: ChartPage },
     { path: config.routes.radio, component: Radio },
     { path: config.routes.newMusic, component: NewMusic },

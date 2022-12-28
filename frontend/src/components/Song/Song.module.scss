@@ -30,6 +30,8 @@
         text-overflow: ellipsis;
         overflow: hidden;
         overflow-x: hidden;
+        margin: 0;
+        padding: 0;
     }
 
     a {
@@ -45,7 +47,6 @@
         -webkit-line-clamp: 1; 
            line-clamp: 1; 
         -webkit-box-orient: vertical;
-        margin: 0;
     }
 }
 

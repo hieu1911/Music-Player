@@ -17,7 +17,7 @@ function Radio() {
             const response = await api.getRadio();
             const results = response.data[0].data;
             setRadioApi(results);
-            console.log(results)
+            // console.log(results)
         }
 
         fetchDateRadio()

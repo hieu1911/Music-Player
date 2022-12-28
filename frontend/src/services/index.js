@@ -119,3 +119,16 @@ export const getRadio = () =>
             reject(err)
         }
     })
+
+export const getMyMusic = () => 
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: '/mymusic',
+                method: 'GET'
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    })
