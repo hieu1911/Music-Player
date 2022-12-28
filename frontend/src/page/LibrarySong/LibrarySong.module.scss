@@ -5,7 +5,7 @@
 .navbar {
     display: flex;
     padding-bottom: 10px;
-    border-bottom: 2px solid #273143;
+    border-bottom: 1px solid #273143;
 
     h2 {
         padding-right: 20px;
@@ -65,4 +65,28 @@
 
 .time {
     font-size: 1.4rem;
+}
+
+.mv-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 160px;
+
+    h2 {
+        color: var(--text-color);
+        font-weight: 500;
+    }
+
+    button {
+        color: var(--white);
+        background-color: #158370;
+        width: 160px;
+        padding: 8px 16px;
+        margin: 20px 0;
+        border-radius: 16px;
+        cursor: pointer;
+    }
 }

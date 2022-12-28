@@ -8,10 +8,12 @@ import config from '../../config/config';
 import styles from './LibrarySong.module.scss'
 
 const cx = classNames.bind(styles)
+const type = ['SONG', 'MV']
 
 function LibrarySong() {
 
     const [myMusic, setMyMusic] = useState({})
+    const [typebtn, setTypebtn] = useState('SONG')
 
     useEffect(() => {
         const fetchApiMyMusic = async () => {
@@ -41,31 +43,35 @@ function LibrarySong() {
     return <Fragment>
         {myMusic.items ? <div className={cx('wrapper')}>
             <div className={cx('navbar')}>
-                <h2 className={cx('active')}>BÀI HÁT</h2>
-                <h2>PODCAST</h2>
+                <h2 className={cx({active: typebtn == 'SONG'})} onClick={() => setTypebtn('SONG')}>BÀI HÁT</h2>
                 <Link to={config.routes.album}>
                     <h2>ALBUM</h2>
                 </Link>
-                <h2>MV</h2>
+                <h2 className={cx({active: typebtn == 'MV'})} onClick={() => setTypebtn('MV')}>MV</h2>
             </div>
-            <div className={cx('nav-btn')}>
-                <button className={cx('active')}>YÊU THÍCH</button>
-                <Link to={config.routes.musicUpload}>
-                    <button>ĐÃ TẢI LÊN</button>
-                </Link>
-            </div>
-            <div className={cx('container')}>
-                <h2>BÀI HÁT</h2>
-                <div>
-                    {myMusic.items.map((item, index) => <div key={index} className={cx('item')}>
-                        <span className={cx('song')}>
-                            <Song data={item} />
-                        </span>
-                        <span className={cx('album')}>{item.hasOwnProperty('album') ? item.album.title : ''}</span>
-                        <span className={cx('time')}>{fomatTime(item.duration)}</span>
-                    </div>)}
+            {typebtn == 'SONG' ? <Fragment>
+                <div className={cx('nav-btn')}>
+                    <button className={cx('active')}>YÊU THÍCH</button>
+                    <Link to={config.routes.musicUpload}>
+                        <button>ĐÃ TẢI LÊN</button>
+                    </Link>
                 </div>
-            </div>
+                <div className={cx('container')}>
+                    <h2>BÀI HÁT</h2>
+                    <div>
+                        {myMusic.items.map((item, index) => <div key={index} className={cx('item')}>
+                            <span className={cx('song')}>
+                                <Song data={item} />
+                            </span>
+                            <span className={cx('album')}>{item.hasOwnProperty('album') ? item.album.title : ''}</span>
+                            <span className={cx('time')}>{fomatTime(item.duration)}</span>
+                        </div>)}
+                    </div>
+                </div>
+            </Fragment> : <div className={cx('mv-container')}>
+                <h2>Chưa có MV nào trong thư viện cá nhân</h2>
+                <button>KHÁM PHÁ NGAY</button>
+            </div>}
         </div> : <></>}
     </Fragment>;
 }
