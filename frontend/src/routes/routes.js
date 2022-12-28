@@ -2,7 +2,7 @@ import config from '../config/config.js';
 import Home from '../page/Home/Home';
 import Individula from '../page/Individula/Individual';
 import ChartPage from '../page/Chart/Chart';
-import Follow from '../page/Follow/Follow';
+import Radio from '../page/Radio/Radio';
 import NewMusic from '../page/NewMusic/NewMusic';
 import Category from '../page/Category/Category';
 import Top100 from '../page/Top100/Top100';
@@ -17,7 +17,7 @@ const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.individula, component: Individula },
     { path: config.routes.chart, component: ChartPage },
-    { path: config.routes.follow, component: Follow },
+    { path: config.routes.radio, component: Radio },
     { path: config.routes.newMusic, component: NewMusic },
     { path: config.routes.category, component: Category },
     { path: config.routes.top100, component: Top100 },

@@ -2,7 +2,7 @@ const routes = {
     home: '/',
     individula: '/individula',
     chart: '/chart',
-    follow: '/follow',
+    radio: '/radio',
     newMusic: '/newMusic',
     category: '/category',
     top100: '/top100',

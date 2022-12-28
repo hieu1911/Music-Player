@@ -16,11 +16,11 @@ function MV() {
 
     useEffect(() => {
         const fetchDataNewMusic = async () => {
-            const response = await api.getMV(MVType);
+            const response = await api.getMV();
             const results = response.data[0].data.items;
             setMVApi(results)
             setMVItems(results[0])
-            console.log(results);
+            // console.log(results);
         };
 
         fetchDataNewMusic();

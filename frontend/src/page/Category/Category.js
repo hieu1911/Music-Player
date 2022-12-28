@@ -14,7 +14,7 @@ function Category() {
     useEffect(() => {
         const fetchDataCategory = async () => {
             const response = await api.getCategory()
-            const results = response.data[0].data
+            const results = response.data[0][0].data
             // console.log(results)
             setCategoryApi(results)
         }

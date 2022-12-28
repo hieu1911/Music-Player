@@ -98,7 +98,20 @@ export const getMV = () =>
     new Promise(async (resolve, reject) => {
         try {
             let response = await httpRequest({
-                url: `/mv`,
+                url: '/mv',
+                method: 'GET'
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    })
+
+export const getRadio = () => 
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: '/radio',
                 method: 'GET'
             })
             resolve(response)

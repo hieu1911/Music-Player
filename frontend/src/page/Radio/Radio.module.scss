@@ -1,0 +1,50 @@
+.wrapper {
+    padding: 36px;
+}
+
+.live-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+h3 {
+    font-size: 2.8rem;
+    padding: 6px 0;
+}
+
+.wrapper-postcast {
+    padding: 10px 0; 
+}
+
+.items-postcast {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-postcast {
+    img {
+        border-radius: 6px;
+
+        &:hover {
+            transform: scale(1.04) translateZ(0);
+        }
+    }
+}
+
+.type-postcast {
+    div {
+        display: flex;
+        justify-content: space-between;
+
+        img {
+            width: 205px;
+            height: 115px;
+            border-radius: 6px;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.04) translateZ(0);
+            }
+        }
+    }
+}

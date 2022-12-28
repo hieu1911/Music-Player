@@ -11,9 +11,9 @@ import {
     faFilterCircleXmark,
     faGuitar,
     faIcons,
-    faListNumeric,
     faMusic,
     faPlus,
+    faRadio,
     faStar,
     faVideo,
 } from '@fortawesome/free-solid-svg-icons';
@@ -50,10 +50,10 @@ const navbarMainItems = [
     },
     {
         id: 3,
-        icon: <FontAwesomeIcon icon={faListNumeric} />,
-        title: 'Follow',
+        icon: <FontAwesomeIcon icon={faRadio} />,
+        title: 'Radio',
         current: false,
-        path: '/follow',
+        path: '/radio',
     },
 ];
 
