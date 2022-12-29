@@ -132,3 +132,30 @@ export const getMyMusic = () =>
             reject(err)
         }
     })
+
+export const getMusicRecently = () => 
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: '/musicRecently',
+                method: 'GET'
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    })
+
+export const getPlaylistRecently = () => 
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: '/playlistRecently',
+                method: 'GET'
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    })
+

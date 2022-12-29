@@ -1,0 +1,66 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 40px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #323c4d;
+
+    h2 {
+        color: var(--white);
+        font-size: 2.2rem;
+        font-weight: 700;
+        position: relative;
+        margin: 0 12px 0 0;
+
+        &::after {
+            content: '';
+            width: 1px;
+            height: 32px;
+            background-color: #fff;
+            position: absolute;
+            top: 0;
+            right: -20px;
+        }
+    }
+
+    h4 {
+        padding-left: 28px;
+        cursor: pointer;
+    }
+}
+
+.active {
+    color: #158370;
+}
+
+.music-container {
+    padding: 0 40px;
+}
+
+.music-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #3d4656;
+    
+    .song {
+        width: 460px;
+    }
+    
+    .album {
+        font-size: 1.3rem;
+        width: 320px;
+        text-overflow: ellipsis;
+    }
+    
+    .time {
+        font-size: 1.4rem;
+    }
+}
+
+.playlist-container {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    padding: 20px 40px;
+}
