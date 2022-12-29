@@ -14,12 +14,13 @@ function LibrarySong() {
 
     const [myMusic, setMyMusic] = useState({})
     const [typebtn, setTypebtn] = useState('SONG')
+    const libMV = []
 
     useEffect(() => {
         const fetchApiMyMusic = async () => {
             const response = await api.getMyMusic()
             const results = response.data[0].data
-            console.log(results)
+            // console.log(results)
             setMyMusic(results)
         }
 
@@ -68,9 +69,11 @@ function LibrarySong() {
                         </div>)}
                     </div>
                 </div>
-            </Fragment> : <div className={cx('mv-container')}>
-                <h2>Chưa có MV nào trong thư viện cá nhân</h2>
-                <button>KHÁM PHÁ NGAY</button>
+            </Fragment> : <div>
+                {libMV.length > 0 ? <div></div> : <div className={cx('mv-container')}>
+                    <h2>Chưa có MV nào trong thư viện cá nhân</h2>
+                    <button>KHÁM PHÁ NGAY</button>
+                </div>}
             </div>}
         </div> : <></>}
     </Fragment>;

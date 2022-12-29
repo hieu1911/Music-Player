@@ -9,7 +9,6 @@ const routes = {
     mv: '/mv',
     song: '/library/song',
     playlist: '/library/playlist',
-    album: '/library/album',
     musicUpload: '/library/musicUpload',
     musicRecently: '/library/musicRecently',
 };

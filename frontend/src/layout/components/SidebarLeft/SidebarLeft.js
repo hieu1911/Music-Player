@@ -107,14 +107,6 @@ const navbarLibraryItems = [
     },
     {
         id: 2,
-        icon: <FontAwesomeIcon icon={faCircleChevronRight} />,
-        title: 'Album',
-        current: false,
-        color: '#447aff',
-        path: '/library/album',
-    },
-    {
-        id: 3,
         icon: <FontAwesomeIcon icon={faCloudUpload} />,
         title: 'Music Upload',
         current: false,
@@ -122,7 +114,7 @@ const navbarLibraryItems = [
         path: '/library/musicUpload',
     },
     {
-        id: 4,
+        id: 3,
         icon: <FontAwesomeIcon icon={faClock} />,
         title: 'Music recently',
         current: false,
