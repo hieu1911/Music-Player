@@ -1,0 +1,72 @@
+.navbar {
+    padding: 10px 40px;
+    display: flex;
+    border-bottom: 1px solid #273143;;
+
+    h2 {
+        position: relative;
+        color: var(--white);
+        margin-right: 20px;
+
+        &::after {
+            content: '';
+            width: 1px;
+            height: 30px;
+            background-color: #fff;
+            position: absolute;
+            top: 0;
+            right: -20px;
+        }
+    }
+
+    button {
+        background-color: transparent;
+        color: var(--text-color);
+        font-size: 1.8rem;
+        font-weight: 700;
+        padding: 0 20px;
+        cursor: pointer;
+    }
+
+    .active {
+        color: #157b64;
+    }
+}
+
+
+
+.song-wrapper, .playlist-wrapper, .artist-wrapper, .mv-wrapper {
+    padding: 20px 40px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #232834;
+}
+
+.song {
+    width: 460px;
+}
+
+.album {
+    font-size: 1.3rem;
+    width: 380px;
+    text-overflow: ellipsis;
+}
+
+.time {
+    font-size: 1.4rem;
+}
+
+.playlist-wrapper, .artist-wrapper, .mv-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.artist-wrapper {
+    span {
+        padding: 20px 10px;
+    }
+}

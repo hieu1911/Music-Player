@@ -10,6 +10,7 @@ import LibrarySong from '../page/LibrarySong/LibrarySong';
 import Playlist from '../page/Playlist/Playlist';
 import MusicUpload from '../page/MusicUpload/MusicUpload';
 import MusicRecently from '../page/MusicRecently/MusicRecently';
+import Search from '../page/Search/Search';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -24,6 +25,7 @@ const publicRoutes = [
     { path: config.routes.playlist, component: Playlist },
     { path: config.routes.musicUpload, component: MusicUpload },
     { path: config.routes.musicRecently, component: MusicRecently },
+    { path: config.routes.searchpage, component: Search },
 ];
 
 const privateRoutes = [];

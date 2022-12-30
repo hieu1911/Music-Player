@@ -44,7 +44,7 @@ function LibrarySong() {
     return <Fragment>
         {myMusic.items ? <div className={cx('wrapper')}>
             <div className={cx('navbar')}>
-                <h2 className={cx({active: typebtn == 'SONG'})} onClick={() => setTypebtn('SONG')}>BÀI HÁT</h2>
+                <h2 className={cx({active: typebtn == 'SONG'})} onClick={() => setTypebtn('SONG')}>SONG</h2>
                 <Link to={config.routes.album}>
                     <h2>ALBUM</h2>
                 </Link>
@@ -52,13 +52,13 @@ function LibrarySong() {
             </div>
             {typebtn == 'SONG' ? <Fragment>
                 <div className={cx('nav-btn')}>
-                    <button className={cx('active')}>YÊU THÍCH</button>
+                    <button className={cx('active')}>FAVORITE</button>
                     <Link to={config.routes.musicUpload}>
-                        <button>ĐÃ TẢI LÊN</button>
+                        <button>UPLOADED</button>
                     </Link>
                 </div>
                 <div className={cx('container')}>
-                    <h2>BÀI HÁT</h2>
+                    <h2>SONGS</h2>
                     <div>
                         {myMusic.items.map((item, index) => <div key={index} className={cx('item')}>
                             <span className={cx('song')}>

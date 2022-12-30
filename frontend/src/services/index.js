@@ -16,6 +16,22 @@ export const getInfoSong = (songId) =>
         }
     })
 
+export const getInfoSongByName = (keyword) => 
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: '/search',
+                method: 'GET',
+                params: {
+                    keyword,
+                },
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    })
+
 export const getHome = () => 
     new Promise(async (resolve, reject) => {
         try {
@@ -158,4 +174,3 @@ export const getPlaylistRecently = () =>
             reject(err)
         }
     })
-

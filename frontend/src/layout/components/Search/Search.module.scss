@@ -20,8 +20,7 @@
     background-color: #0f1a2e;
 }
 
-.search,
-.search-results {
+.search {
     width: 540px;
 }
 
@@ -107,5 +106,29 @@
 
     &:active {
         background-color: rgba(22, 24, 35, 0.06);
+    }
+}
+
+.search-result {
+    position: relative;
+    top: -20px;
+    width: 540px;
+    padding: 0 20px 16px 20px;
+    background-color: #173b45;
+    border-radius: 12px;
+}
+
+.search-title {
+    padding: 20px 0 12px 0;
+    font-size: 1.8rem;
+    border-bottom: 1px solid #545d6b;
+}
+
+.search-container {
+    p {
+        font-size: 1.8rem;
+        color: var(--white);
+        font-weight: 700;
+        padding: 12px 0 8px 12px;
     }
 }

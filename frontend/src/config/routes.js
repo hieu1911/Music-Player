@@ -11,6 +11,7 @@ const routes = {
     playlist: '/library/playlist',
     musicUpload: '/library/musicUpload',
     musicRecently: '/library/musicRecently',
+    searchpage: '/search'
 };
 
 export default routes;
