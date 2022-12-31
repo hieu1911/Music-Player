@@ -1,4 +1,5 @@
 export const fomatTime = (time) => {
+    time = Math.floor(time)
     let surplusTime = time % 60
     let integerTime = (time - surplusTime) / 60
     let integerTimeS = integerTime

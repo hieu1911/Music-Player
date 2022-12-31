@@ -5,8 +5,8 @@ const DataContext = createContext();
 function DataProvider({ children }) {
     const [searchResult, setSearchResult] = useState({})
     const [playlist, setPlaylist] = useState({})
-    // const [playlistCurrentId, setPlaylistCurrentId] = useState('6B7EI9AA')
     const [playlistCurrentId, setPlaylistCurrentId] = useState('')
+    const [currentSong, setCurrentSong] = useState({})
 
     const value = {
         searchResult,
@@ -15,6 +15,8 @@ function DataProvider({ children }) {
         setPlaylist,
         playlistCurrentId,
         setPlaylistCurrentId,
+        currentSong,
+        setCurrentSong,
     }
 
     return (

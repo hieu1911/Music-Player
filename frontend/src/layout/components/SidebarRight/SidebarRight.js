@@ -28,12 +28,38 @@ function SidebarRight() {
                 let response = await api.getPlaylistDetail(id);
                 let results = response.data.data;
                 setPlaylistD(results);
-            }  
+            }
             fomatSongs(JSON.parse(localStorage.getItem('listSongCurrent')));
         };
 
         fetchApiPlaylistD();
     }, [value.playlistCurrentId]);
+
+    useEffect(() => {
+        let list = JSON.parse(localStorage.getItem('listSongCurrent'))
+        if (Object.keys(value.currentSong).length > 0) {
+            let ids = list.map((song) => song.encodeId);
+            if (!ids.includes(value.currentSong.encodeId)) {
+                let curId = list.findIndex((item) => item.status == 'current');
+                list.splice(curId + 1, 0, value.currentSong);
+            }
+
+            let cur = false;
+            let newSongs = list.map((song) => {
+                if (song.encodeId == value.currentSong.encodeId) {
+                    song = {...song, status: 'current'};
+                    cur = true;
+                } else if (!cur) {
+                    song.status = 'prev';
+                } else {
+                    song.status = 'next';
+                }
+                return song;
+            });
+            setSongs(newSongs);
+            localStorage.setItem('listSongCurrent', JSON.stringify(newSongs));
+        }
+    }, [value.currentSong]);
 
     const fomatSongs = (list) => {
         if (list[0].status) {
@@ -44,17 +70,18 @@ function SidebarRight() {
                 } else {
                     item.status = 'next';
                 }
-                item.id = index;
             });
         }
         setSongs(list);
     };
 
     const handleClick = (id) => {
-        let newSongs = songs.map((song, i) => {
-            if (i == id) {
+        let cur = false;
+        let newSongs = songs.map((song) => {
+            if (song.encodeId == id) {
                 song.status = 'current';
-            } else if (i < id) {
+                cur = true;
+            } else if (!cur) {
                 song.status = 'prev';
             } else {
                 song.status = 'next';
@@ -66,10 +93,7 @@ function SidebarRight() {
     };
 
     const handleDelete = (id) => {
-        let newSongs = [];
-        let songstart = songs.slice(0, id);
-        let songend = songs.slice(id + 1, songs.length);
-        newSongs = songstart.concat(songend);
+        let newSongs = songs.filter((item) => item.encodeId != id);
         setSongs(newSongs);
         localStorage.setItem('listSongCurrent', JSON.stringify(newSongs));
     };
@@ -83,7 +107,6 @@ function SidebarRight() {
                         {songs.map((song, index) => (
                             <span className={cx('song')} key={index}>
                                 <Song
-                                    id={index}
                                     data={song}
                                     status={song.status}
                                     playlist={playlistD.title}

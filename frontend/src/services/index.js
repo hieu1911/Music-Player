@@ -16,6 +16,38 @@ export const getInfoSong = (songId) =>
         }
     })
 
+export const getSong = (songId) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: '/song',
+                method: 'GET',
+                params: {
+                    id: songId
+                },
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    })
+
+export const getLyric = (songId) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: '/lyric',
+                method: 'GET',
+                params: {
+                    id: songId
+                },
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    })
+
 export const getInfoSongByName = (keyword) => 
     new Promise(async (resolve, reject) => {
         try {

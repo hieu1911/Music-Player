@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -20,6 +20,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
+import { DataContext } from '../../../dataContext';
+import * as api from '../../../services';
+import { fomatTime } from '../../../components/func';
 import Menu from '../../../components/Menu/Menu';
 import Song from '../../../components/Song/Song';
 import styles from './Controller.module.scss';
@@ -65,13 +68,74 @@ function Controller() {
     const [loop, setLoop] = useState(false);
     const [mute, setMute] = useState(false);
 
-    const [time, setTime] = useState(0);
+    const [curTime, setCurTime] = useState(0);
     const [volume, setVolume] = useState(0);
+    const [curSong, setCurSong] = useState(JSON.parse(localStorage.getItem('currentSong')));
+    const [lyric, setLyric] = useState('');
 
     const inputRef = useRef([]);
+    const audioRef = useRef(new Audio());
+    const animationRef = useRef();
+
+    const value = useContext(DataContext);
+
+    useEffect(() => {
+        let song =
+            Object.keys(value.currentSong).length > 0
+                ? value.currentSong
+                : JSON.parse(localStorage.getItem('currentSong'));
+        if (song && song.status) {
+            delete song.status;
+        }
+        setCurSong(song);
+
+        const fetchApiSong = async () => {
+            let response = await api.getSong(song.encodeId);
+            if (response.data.data['128']) {
+                let results = response.data.data['128'];
+                audioRef.current.pause();
+                audioRef.current.src = results;
+                audioRef.current.load();
+            }
+
+            if (play) {
+                audioRef.current.play();
+            }
+        };
+
+        fetchApiSong();
+
+        const fetchApiLyric = async () => {
+            let response = await api.getLyric(song.encodeId);
+            let result = response;
+            // console.log(result)
+            setLyric(result);
+        };
+
+        fetchApiLyric();
+    }, [value.currentSong]);
 
     const handleClickPlay = () => {
-        setPlay(!play);
+        if (audioRef.current.src) {
+            if (!play) {
+                audioRef.current.play();
+                animationRef.current = requestAnimationFrame(whilePlaying);
+            } else {
+                audioRef.current.pause();
+                cancelAnimationFrame(animationRef.current);
+            }
+            setPlay(!play);
+        }
+    };
+
+    const whilePlaying = () => {
+        setCurTime((Math.floor(audioRef.current.currentTime) / curSong.duration) * 100);
+        animationRef.current = requestAnimationFrame(whilePlaying);
+
+        if ((audioRef.current.currentTime > curSong.duration - 0.1) && loop) {
+            audioRef.current.load()
+            audioRef.current.play()
+        }
     };
 
     const handleClickAdd = () => {
@@ -79,9 +143,11 @@ function Controller() {
     };
 
     const handleClickRandom = () => {
-        setRandom(!random);
+        let data = JSON.parse(localStorage.getItem('listSongCurrent'))
+        value.setCurrentSong(data[Math.floor(Math.random() * data.length) - 1])
     };
 
+    // loop a song (If the song ends, it will play again)
     const handleClickLoop = () => {
         setLoop(!loop);
     };
@@ -90,10 +156,35 @@ function Controller() {
         setMute(!mute);
     };
 
+    const handleClickNext = () => {
+        let data = JSON.parse(localStorage.getItem('listSongCurrent'));
+        let curId = data.findIndex((item) => item.status == 'current');
+        if (curId < data.length) {
+            value.setCurrentSong(data[curId + 1]);
+        } else {
+            value.setCurrentSong(data[0])
+        }
+    };
+
+    const handleClickPrev = () => {
+        let data = JSON.parse(localStorage.getItem('listSongCurrent'));
+        let curId = data.findIndex((item) => item.status == 'current');
+        if (curId > 0) {
+            value.setCurrentSong(data[curId - 1]);
+        } else {
+            value.setCurrentSong(data[data.length - 1])
+        }
+    };
+
+    const handleChangeTime = (value) => {
+        setCurTime(value);
+        audioRef.current.currentTime = (value / 100) * curSong.duration;
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('controls-left')}>
-                {/* <Song data={data} bigImg /> */}
+                <div>{curSong ? <Song data={curSong} bigImg /> : <Song data={{}} bigImg />}</div>
                 <div className={cx('icon-left')}>
                     <span className={cx({ addLibrary })} onClick={handleClickAdd}>
                         <FontAwesomeIcon icon={faHeart} />
@@ -111,7 +202,7 @@ function Controller() {
                         <FontAwesomeIcon icon={faRandom} />
                     </span>
                     <span>
-                        <FontAwesomeIcon icon={faBackwardStep} />
+                        <FontAwesomeIcon icon={faBackwardStep} onClick={handleClickPrev} />
                     </span>
                     <span onClick={handleClickPlay}>
                         <div className={cx('player-play-btn')}>
@@ -119,25 +210,29 @@ function Controller() {
                         </div>
                     </span>
                     <span>
-                        <FontAwesomeIcon icon={faForwardStep} />
+                        <FontAwesomeIcon icon={faForwardStep} onClick={handleClickNext} />
                     </span>
                     <span className={cx({ loop })} onClick={handleClickLoop}>
                         <FontAwesomeIcon icon={faRepeat} />
                     </span>
                 </div>
                 <div className={cx('player-bar-time')}>
-                    <span className={cx('time-left')}>00:00</span>
+                    {audioRef.current ? (
+                        <span className={cx('time-left')}>{fomatTime(audioRef.current.currentTime)}</span>
+                    ) : (
+                        <></>
+                    )}
                     <input
                         className={cx('progress-time')}
                         type="range"
                         ref={(el) => (inputRef.current[0] = el)}
-                        value={time}
-                        onChange={(e) => setTime(e.target.value)}
+                        value={curTime}
+                        onChange={(e) => handleChangeTime(e.target.value)}
                         step="1"
                         min="0"
                         max="100"
                     />
-                    <span className={cx('time-right')}>03:01</span>
+                    <span className={cx('time-right')}>{curSong ? fomatTime(curSong.duration) : '00:00'}</span>
                 </div>
             </div>
             <div className={cx('controls-right')}>
