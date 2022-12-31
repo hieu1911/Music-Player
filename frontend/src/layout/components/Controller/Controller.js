@@ -58,12 +58,6 @@ const moreMenu = [
     },
 ];
 
-const data = {
-    url: '',
-    name: 'Something Just Like This',
-    artists: 'The Chainsmokers',
-};
-
 function Controller() {
     const [addLibrary, setAddLibrary] = useState(false);
     const [play, setPlay] = useState(false);
@@ -99,7 +93,7 @@ function Controller() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('controls-left')}>
-                <Song data={data} bigImg />
+                {/* <Song data={data} bigImg /> */}
                 <div className={cx('icon-left')}>
                     <span className={cx({ addLibrary })} onClick={handleClickAdd}>
                         <FontAwesomeIcon icon={faHeart} />

@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 function PlaylistDetail() {
     const value = useContext(DataContext);
     const item = Object.keys(value.playlist).length != 0 ? value.playlist : JSON.parse(localStorage.getItem('playlist'));
-    console.log(item)
+    // console.log(item)
     const [playlistD, setPlaylistD] = useState({});
 
     useEffect(() => {
@@ -37,6 +37,7 @@ function PlaylistDetail() {
                         <p>{playlistD.like + ' liked'}</p>
                         <button onClick={() => {
                             localStorage.setItem('playlistId', item.encodeId)
+                            localStorage.setItem('listSongCurrent', JSON.stringify(playlistD.song.items))
                             value.setPlaylistCurrentId(item.encodeId)
                         }}>PLAY NOW</button>
                     </div>
