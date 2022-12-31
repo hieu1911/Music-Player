@@ -32,6 +32,22 @@ export const getInfoSongByName = (keyword) =>
         }
     })
 
+export const getPlaylistDetail = (playlistId) => 
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: '/detailplaylist',
+                method: 'GET',
+                params: {
+                    id: playlistId
+                },
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    })
+
 export const getHome = () => 
     new Promise(async (resolve, reject) => {
         try {

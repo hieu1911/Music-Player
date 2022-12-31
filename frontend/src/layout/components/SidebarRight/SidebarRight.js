@@ -1,47 +1,53 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import classNames from 'classnames/bind';
-import styles from './SidebarRight.module.scss';
 
+import * as api from '../../../services';
 import Header from './Header/Header.js';
+import { DataContext } from '../../../dataContext'
 import Song from '../../../components/Song/Song';
+import styles from './SidebarRight.module.scss';
 
 const cx = classNames.bind(styles);
 
-const songs = {
-    playlist: 'US-UK',
-    data: [
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'prev' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'prev' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'prev' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'prev' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'prev' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'prev' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'prev' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'prev' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'current' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-        { url: '', name: 'Something Just Like This', artists: 'The Chainsmokers', status: 'next' },
-    ],
-};
-
 function SidebarRight() {
-    const [index, setIndex] = useState(-1);
-    const [del, setDel] = useState(false);
+    const [songs, setSongs] = useState([])
+    const [playlistD, setPlaylistD] = useState({});
+
+    const value = useContext(DataContext)
+    var id = value.playlistCurrentId
+
+    // only get id from localStorage once time after refresh page
+    useEffect(() => {
+        id = localStorage.getItem('playlistId');
+    }, [])
+
+    // get id from context after chagne playlist
+    useEffect(() => {
+        const fetchApiPlaylistD = async () => {
+            let response = await api.getPlaylistDetail(id);
+            let results = response.data.data;
+            setPlaylistD(results);
+            fomatSongs(results.song.items)
+        };
+
+        fetchApiPlaylistD();
+    }, [value.playlistCurrentId]);
+    
+    const fomatSongs = (listSong) => {
+        listSong.map((item, index) => {
+            if (index == 0) {
+                item.status = 'current'
+            } else {
+                item.status = 'next'
+            }
+            item.id = index
+        })
+
+        setSongs(listSong)
+    }
 
     const handleClick = (id) => {
-        songs.data.filter((song, i) => {
+        let newSongs = songs.map((song, i) => {
             if (i == id) {
                 song.status = 'current';
             } else if (i < id) {
@@ -49,31 +55,43 @@ function SidebarRight() {
             } else {
                 song.status = 'next';
             }
+            return song;
         });
-        setIndex(id);
+        setSongs(newSongs)
     };
 
     const handleDelete = (id) => {
-        songs.data.splice(id, 1);
-        setDel(!del);
+        let newSongs = [];
+        // newSongs.splice(id, 1)
+        let songstart = songs.slice(0, id)
+        let songend = songs.slice(id + 1, songs.length)
+        newSongs = songstart.concat(songend)
+
+        // newSongs.map((item, index) => {
+        //     item.id = index
+        // })
+        setSongs(newSongs)
     };
 
     return (
         <div className={cx('wrapper')}>
             <Header />
-            {/* <div className={cx('song')}>
-                {songs.data.map((song, index) => (
-                    <Song
-                        key={index}
-                        id={index}
-                        data={song}
-                        status={song.status}
-                        playlist={songs.playlist}
-                        onClick={handleClick}
-                        onDelete={handleDelete}
-                    />
-                ))}
-            </div> */}
+            <div>
+                {songs.length > 0 ? <div className={cx('songs')}>
+                    {songs.map((song, index) => (
+                        <span className={cx('song')} key={index}>
+                            <Song   
+                                id={index}
+                                data={song}
+                                status={song.status}
+                                playlist={playlistD.title}
+                                onClick={handleClick}
+                                onDelete={handleDelete}
+                            />
+                        </span>
+                    ))}
+                </div> : <></>}
+            </div>
         </div>
     );
 }

@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './NewMusic.module.scss';
 import Song from '../../components/Song/Song';
+import { fomatTime } from '../../components/func';
 import * as api from '../../services';
 
 const cx = classNames.bind(styles);
@@ -20,20 +21,6 @@ function NewMusic() {
 
         fetchDataNewMusic();
     }, []);
-
-    const fomatTime = (time) => {
-        let surplusTime = time % 60
-        let integerTime = (time - surplusTime) / 60
-        let integerTimeS = integerTime
-        let surplusTimeS = surplusTime
-        if (integerTime < 10)  {
-            integerTimeS = '0' + integerTime.toString()
-        }
-        if (surplusTime < 10)  {
-            surplusTimeS = '0' + surplusTime.toString()
-        }
-        return integerTimeS + ':' + surplusTimeS
-    }
 
     return (
         <div className={cx('wrapper')}>

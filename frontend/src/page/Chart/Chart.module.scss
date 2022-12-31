@@ -1,6 +1,3 @@
-.wrapper {
-}
-
 .chart, .header {
     padding: 12px 12px;
 }
@@ -17,6 +14,7 @@
 
 .top-song-wrapper {
     padding: 20px;
+    
     .item-wrapper {
         display: flex;
         padding: 2px 8px;
@@ -92,4 +90,18 @@
     .top-song {
         font-size: 3.6rem;
     }
+}
+
+.song {
+    width: 460px;
+}
+
+.album {
+    font-size: 1.3rem;
+    width: 300px;
+    text-overflow: ellipsis;
+}
+
+.time {
+    font-size: 1.4rem;
 }

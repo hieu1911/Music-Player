@@ -4,6 +4,7 @@ import classNames from 'classnames/bind'
 import * as api from '../../services'
 import Song from '../../components/Song/Song'
 import Playlist from '../../components/Playlist/Playlist'
+import { fomatTime } from '../../components/func';
 import styles from './MusicRecently.module.scss'
 
 const cx = classNames.bind(styles)
@@ -29,20 +30,6 @@ function MusicRecently() {
 
         fetchApiMusic()
     }, [])
-
-    const fomatTime = (time) => {
-        let surplusTime = time % 60
-        let integerTime = (time - surplusTime) / 60
-        let integerTimeS = integerTime
-        let surplusTimeS = surplusTime
-        if (integerTime < 10)  {
-            integerTimeS = '0' + integerTime.toString()
-        }
-        if (surplusTime < 10)  {
-            surplusTimeS = '0' + surplusTime.toString()
-        }
-        return integerTimeS + ':' + surplusTimeS
-    }
 
     return <Fragment>
         {musicApi.items && playlistApi.items ? <div className={cx('wrapper')}>

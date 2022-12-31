@@ -6,6 +6,7 @@ import Song from '../../components/Song/Song'
 import Playlist from '../../components/Playlist/Playlist'
 import Artist from '../../components/Artist/Artist'
 import MVItem from '../../components/MV/MVItem'
+import { fomatTime } from '../../components/func';
 import styles from './Search.module.scss'
 
 const cx = classNames.bind(styles)
@@ -16,21 +17,7 @@ function Search() {
     const [type, setType] = useState('SONG');
 
     const value = useContext(DataContext)
-    console.log(value.searchResult)
-
-    const fomatTime = (time) => {
-        let surplusTime = time % 60
-        let integerTime = (time - surplusTime) / 60
-        let integerTimeS = integerTime
-        let surplusTimeS = surplusTime
-        if (integerTime < 10)  {
-            integerTimeS = '0' + integerTime.toString()
-        }
-        if (surplusTime < 10)  {
-            surplusTimeS = '0' + surplusTime.toString()
-        }
-        return integerTimeS + ':' + surplusTimeS
-    }
+    // console.log(value.searchResult)
 
     return ( <Fragment>
         {value.searchResult ? <div className={cx('wrapper')}>
