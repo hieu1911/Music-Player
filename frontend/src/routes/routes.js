@@ -12,6 +12,7 @@ import MusicUpload from '../page/MusicUpload/MusicUpload';
 import MusicRecently from '../page/MusicRecently/MusicRecently';
 import Search from '../page/Search/Search';
 import PlaylistDetail from '../page/PlaylistDetail/PlaylistDetail.js';
+import Lyric from '../page/Lyric/Lyric.js';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -27,7 +28,8 @@ const publicRoutes = [
     { path: config.routes.musicUpload, component: MusicUpload },
     { path: config.routes.musicRecently, component: MusicRecently },
     { path: config.routes.searchpage, component: Search },
-    { path: config.routes.playlistDetail, component: PlaylistDetail}
+    { path: config.routes.playlistDetail, component: PlaylistDetail},
+    { path: config.routes.lyric, component: Lyric},
 ];
 
 const privateRoutes = [];

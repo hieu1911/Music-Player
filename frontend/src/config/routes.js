@@ -12,7 +12,8 @@ const routes = {
     musicUpload: '/library/musicUpload',
     musicRecently: '/library/musicRecently',
     searchpage: '/search',
-    playlistDetail: '/playlistDetail'
+    playlistDetail: '/playlistDetail',
+    lyric: '/lyric',
 };
 
 export default routes;

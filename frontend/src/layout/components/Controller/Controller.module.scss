@@ -129,6 +129,10 @@
         margin: 0 8px;
         cursor: pointer;
     }
+
+    .video {
+        cursor: not-allowed;
+    }
 }
 
 .progress-volume {

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useContext } from 'react';
+import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -21,8 +22,9 @@ import {
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 import { DataContext } from '../../../dataContext';
-import * as api from '../../../services';
 import { fomatTime } from '../../../components/func';
+import config from '../../../config/config'
+import * as api from '../../../services';
 import Menu from '../../../components/Menu/Menu';
 import Song from '../../../components/Song/Song';
 import styles from './Controller.module.scss';
@@ -70,8 +72,7 @@ function Controller() {
 
     const [curTime, setCurTime] = useState(0);
     const [volume, setVolume] = useState(0);
-    const [curSong, setCurSong] = useState(JSON.parse(localStorage.getItem('currentSong')));
-    const [lyric, setLyric] = useState('');
+    const [curSong, setCurSong] = useState(JSON.parse(localStorage.getItem('currentSong')))
 
     const inputRef = useRef([]);
     const audioRef = useRef(new Audio());
@@ -104,15 +105,6 @@ function Controller() {
         };
 
         fetchApiSong();
-
-        const fetchApiLyric = async () => {
-            let response = await api.getLyric(song.encodeId);
-            let result = response;
-            console.log(result);
-            setLyric(result);
-        };
-
-        fetchApiLyric();
     }, [value.currentSong]);
 
     const handleClickPlay = () => {
@@ -245,12 +237,14 @@ function Controller() {
                 </div>
             </div>
             <div className={cx('controls-right')}>
-                <span>
+                <span className={cx('video')}>
                     <FontAwesomeIcon icon={faFilm} />
                 </span>
-                <span>
-                    <FontAwesomeIcon icon={faMicrophoneAlt} />
-                </span>
+                <Link to={config.routes.lyric}>
+                    <span>
+                        <FontAwesomeIcon icon={faMicrophoneAlt} />
+                    </span>
+                </Link>
                 <span onClick={handleClickMute}>
                     {mute ? <FontAwesomeIcon icon={faVolumeMute} /> : <FontAwesomeIcon icon={faVolumeHigh} />}
                 </span>
