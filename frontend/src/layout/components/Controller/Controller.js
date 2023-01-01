@@ -108,7 +108,7 @@ function Controller() {
         const fetchApiLyric = async () => {
             let response = await api.getLyric(song.encodeId);
             let result = response;
-            // console.log(result)
+            console.log(result);
             setLyric(result);
         };
 
@@ -132,9 +132,9 @@ function Controller() {
         setCurTime((Math.floor(audioRef.current.currentTime) / curSong.duration) * 100);
         animationRef.current = requestAnimationFrame(whilePlaying);
 
-        if ((audioRef.current.currentTime > curSong.duration - 0.1) && loop) {
-            audioRef.current.load()
-            audioRef.current.play()
+        if (audioRef.current.currentTime > curSong.duration - 0.1 && loop) {
+            audioRef.current.load();
+            audioRef.current.play();
         }
     };
 
@@ -143,8 +143,10 @@ function Controller() {
     };
 
     const handleClickRandom = () => {
-        let data = JSON.parse(localStorage.getItem('listSongCurrent'))
-        value.setCurrentSong(data[Math.floor(Math.random() * data.length) - 1])
+        let data = JSON.parse(localStorage.getItem('listSongCurrent'));
+        let curSong = data[Math.floor(Math.random() * data.length) - 1];
+        value.setCurrentSong(curSong);
+        localStorage.setItem('currentSong', JSON.stringify(curSong));
     };
 
     // loop a song (If the song ends, it will play again)
@@ -153,27 +155,34 @@ function Controller() {
     };
 
     const handleClickMute = () => {
+        audioRef.current.muted = !mute;
         setMute(!mute);
     };
 
     const handleClickNext = () => {
         let data = JSON.parse(localStorage.getItem('listSongCurrent'));
         let curId = data.findIndex((item) => item.status == 'current');
+        let curSong;
         if (curId < data.length) {
-            value.setCurrentSong(data[curId + 1]);
+            curSong = data[curId + 1];
         } else {
-            value.setCurrentSong(data[0])
+            curSong = data[0];
         }
+        value.setCurrentSong(curSong);
+        localStorage.setItem('currentSong', JSON.stringify(curSong));
     };
 
     const handleClickPrev = () => {
         let data = JSON.parse(localStorage.getItem('listSongCurrent'));
         let curId = data.findIndex((item) => item.status == 'current');
+        let curSong;
         if (curId > 0) {
-            value.setCurrentSong(data[curId - 1]);
+            curSong = data[curId - 1];
         } else {
-            value.setCurrentSong(data[data.length - 1])
+            curSong = data[data.length - 1];
         }
+        value.setCurrentSong(curSong);
+        localStorage.setItem('currentSong', JSON.stringify(curSong));
     };
 
     const handleChangeTime = (value) => {
@@ -250,10 +259,13 @@ function Controller() {
                     type="range"
                     ref={(el) => (inputRef.current[1] = el)}
                     value={volume}
-                    onChange={(e) => setVolume(e.target.value)}
-                    step="1"
+                    onChange={(e) => {
+                        setVolume(e.target.value);
+                        audioRef.current.volume = volume;
+                    }}
+                    step="0.01"
                     min="0"
-                    max="100"
+                    max="1"
                 />
             </div>
         </div>
