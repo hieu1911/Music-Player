@@ -6,21 +6,8 @@ import styles from './Menu.module.scss';
 const cx = classNames.bind(styles);
 
 function Menu({ items = [], onClick }) {
-    const [index, setIndex] = useState(10);
-
-    const handleClick = (id) => {
-        items.map((item) => {
-            if (item.id == id) {
-                item.current = true;
-            } else {
-                item.current = false;
-            }
-        });
-        setIndex(id);
-    };
-
     const renderItems = () => {
-        return items.map((item) => <Item key={item.id} data={item} onClick={handleClick} />);
+        return items.map((item) => <Item key={item.id} data={item}/>);
     };
 
     return (
