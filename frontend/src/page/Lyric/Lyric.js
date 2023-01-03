@@ -40,7 +40,7 @@ function Lyric() {
             {curSong ? (
                 <div className={cx('wrapper')}>
                     <div className={cx('info')}>
-                        <img src={curSong.thumbnailM} />
+                        <img src={curSong.thumbnailM} className={cx({playmusic: value.playMusic})}/>
                         <h3>{curSong.title}</h3>
                         <p>{curSong.artistsNames}</p>
                     </div>

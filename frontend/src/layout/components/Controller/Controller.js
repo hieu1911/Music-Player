@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useContext } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -23,7 +23,7 @@ import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg
 
 import { DataContext } from '../../../dataContext';
 import { fomatTime } from '../../../components/func';
-import config from '../../../config/config'
+import config from '../../../config/config';
 import * as api from '../../../services';
 import Menu from '../../../components/Menu/Menu';
 import Song from '../../../components/Song/Song';
@@ -71,8 +71,8 @@ function Controller() {
     const [mute, setMute] = useState(false);
 
     const [curTime, setCurTime] = useState(0);
-    const [volume, setVolume] = useState(0);
-    const [curSong, setCurSong] = useState(JSON.parse(localStorage.getItem('currentSong')))
+    const [volume, setVolume] = useState(1);
+    const [curSong, setCurSong] = useState(JSON.parse(localStorage.getItem('currentSong')));
 
     const inputRef = useRef([]);
     const audioRef = useRef(new Audio());
@@ -90,21 +90,24 @@ function Controller() {
         }
         setCurSong(song);
 
-        const fetchApiSong = async () => {
-            let response = await api.getSong(song.encodeId);
-            if (response.data.data['128']) {
-                let results = response.data.data['128'];
-                audioRef.current.pause();
-                audioRef.current.src = results;
-                audioRef.current.load();
-            }
+        if (song) {
+            const fetchApiSong = async () => {
+                let response = await api.getSong(song.encodeId);
+                if (response.data.data && response.data.data.hasOwnProperty('128')) {
+                    let results = response.data.data['128'];
+                    audioRef.current.pause();
+                    audioRef.current.src = results;
+                    audioRef.current.load();
+                    setCurTime(0)
+                }
 
-            if (play) {
-                audioRef.current.play();
-            }
-        };
+                if (play) {
+                    audioRef.current.play();
+                }
+            };
 
-        fetchApiSong();
+            fetchApiSong();
+        }
     }, [value.currentSong]);
 
     const handleClickPlay = () => {
@@ -118,6 +121,8 @@ function Controller() {
             }
             setPlay(!play);
         }
+
+        value.setPlayMusic(!value.playMusic)
     };
 
     const whilePlaying = () => {
@@ -155,10 +160,11 @@ function Controller() {
         let data = JSON.parse(localStorage.getItem('listSongCurrent'));
         let curId = data.findIndex((item) => item.status == 'current');
         let curSong;
-        if (curId < data.length) {
+        if (curId < data.length - 1) {
             curSong = data[curId + 1];
         } else {
             curSong = data[0];
+            console.log(curSong);
         }
         value.setCurrentSong(curSong);
         localStorage.setItem('currentSong', JSON.stringify(curSong));
@@ -240,11 +246,11 @@ function Controller() {
                 <span className={cx('video')}>
                     <FontAwesomeIcon icon={faFilm} />
                 </span>
-                <Link to={config.routes.lyric}>
-                    <span>
+                <span>
+                    <Link to={config.routes.lyric}>
                         <FontAwesomeIcon icon={faMicrophoneAlt} />
-                    </span>
-                </Link>
+                    </Link>
+                </span>
                 <span onClick={handleClickMute}>
                     {mute ? <FontAwesomeIcon icon={faVolumeMute} /> : <FontAwesomeIcon icon={faVolumeHigh} />}
                 </span>

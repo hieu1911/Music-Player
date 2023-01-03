@@ -55,8 +55,8 @@ function LibrarySong() {
                 </div>
             </Fragment> : <div>
                 {libMV.length > 0 ? <div></div> : <div className={cx('mv-container')}>
-                    <h2>Chưa có MV nào trong thư viện cá nhân</h2>
-                    <button>KHÁM PHÁ NGAY</button>
+                    <h2>There are no MVs in your personal library yet</h2>
+                    <button>DISCOVER NOW</button>
                 </div>}
             </div>}
         </div> : <></>}

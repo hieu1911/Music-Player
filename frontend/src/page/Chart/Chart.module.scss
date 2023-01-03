@@ -9,7 +9,12 @@
 }
 
 .chart {
-    padding: 0 0 36px 0;
+    position: relative;
+    height: 360px;
+
+    .tooltip {
+        position: absolute;
+    }
 }
 
 .top-song-wrapper {

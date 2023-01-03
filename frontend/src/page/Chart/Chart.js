@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -23,9 +23,9 @@ function ChartPage() {
     const colors = ['#36a2eb', '#4bc0c0', '#ff6384'];
     const [apiChart, setApiChart] = useState([]);
     const [weekChart, setWeekChart] = useState({});
-    const [songItems, setSongItems] = useState({});
-    const [labels, setLabels] = useState([]);
-    const [songInfo, setSongInfo] = useState([]);
+    const [songInfo, setSongInfo] = useState([])
+    
+    const [data, setData] = useState({});
 
     ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
     ChartJS.defaults.color = '#b3bac2';
@@ -38,63 +38,85 @@ function ChartPage() {
             setWeekChart(results.weekChart);
 
             const items = results.RTChart.chart.items;
-            setSongItems(items);
 
             const l = results.RTChart.chart.times;
-            setLabels(l.map((item) => item.hour + ':00'));
+            const labels = l.filter((item) => +item.hour % 2 === 0)?.map((item) => item.hour + ':00');
+
+            const datasets = [];
+            if (items) {
+                for (let i = 0; i < 3; ++i) {
+                    datasets.push({
+                        data: items[Object.keys(items)[i]]
+                            .filter((item) => +item.hour % 2 === 0)
+                            .map((item) => item.counter),
+                        borderColor: colors[i],
+                        backgroundColor: colors[i],
+                        tension: 0.3,
+                        borderWidth: 2,
+                        pointBackgroundColor: 'white',
+                        pointHoverRadius: 5,
+                        pointBorderColor: colors[i],
+                        poinHOverBorderWidth: 5
+                    });
+                }
+            }
+
+            setData({ labels, datasets });
+           
+            let songInf = []
+            const fetchApiInfoSong = async (id) => {
+                const res = await api.getInfoSong(id);
+                const result = res.data.data;
+
+                if (!songInf.includes(result)) {
+                    songInf.push(result);
+                }
+            };
+
+            if (Object.keys(items).length > 0) {
+                Object.keys(items).map((item) => {
+                    if (item) {
+                        fetchApiInfoSong(item);
+                    }
+                });
+            }
+            setSongInfo(songInf);
         };
 
         fetchApiChart();
     }, []);
 
-    useEffect(() => {
-        const fetchApiInfoSong = async (id) => {
-            const res = await api.getInfoSong(id);
-            const result = res.data.data.title;
-            setSongInfo((prev) => {
-                if (prev.includes(result)) {
-                    return [...prev];
-                } else {
-                    return [...prev, result];
-                }
-            });
-        };
+    const options = {
+        responsive: true,
+        pointRadius: 0,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                ticks: { display: false },
+                grid: { color: 'rgba(255, 255, 255, 0.3)', drawTicks: false },
+                border: {dash: [3, 4]},
+            },
 
-        if (Object.keys(songItems).length > 0) {
-            Object.keys(songItems).map((item) => {
-                if (item) {
-                    fetchApiInfoSong(item);
-                }
-            });
+            x: {
+                tichs: { color: 'blue' },
+                grid: { color: 'transparent' },
+            },
+        },
+        plugins: {
+            legend: false,
+        },
+        hover: {
+            mode: 'dataset',
+            intersect: false,
         }
-    }, [songItems]);
+    };
 
     return (
         <div className={cx('wrapper')}>
             <h2 className={cx('header')}>#Chart</h2>
             <div className={cx('chart')}>
-                {songInfo.length > 0 ? (
-                    <Line
-                        datasetIdKey="id"
-                        data={{
-                            labels: labels.map((item, index) => {
-                                let result = [];
-                                if (index % 2 == 0) {
-                                    result.push(item);
-                                }
-                                return result;
-                            }),
-                            datasets: Object.values(songItems).map((item, index) => ({
-                                label: songInfo[index],
-                                data: item.map((child) => child.counter),
-                                borderColor: colors[index],
-                                backgroundColor: colors[index],
-                            })),
-                        }}
-                    />
-                ) : (
-                    <></>
-                )}
+                {data.labels ? <Line datasetIdKey="id" data={data} options={options} /> : <>
+                </>}
             </div>
             <div className={cx('top-song-wrapper')}>
                 {apiChart.map((item, index) => (

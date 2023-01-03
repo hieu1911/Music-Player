@@ -29,14 +29,17 @@ function SidebarRight() {
                 let results = response.data.data;
                 setPlaylistD(results);
             }
-            fomatSongs(JSON.parse(localStorage.getItem('listSongCurrent')));
+            if (localStorage.getItem('listSongCurrent')) {
+                fomatSongs(JSON.parse(localStorage.getItem('listSongCurrent')));
+            }
         };
 
         fetchApiPlaylistD();
     }, [value.playlistCurrentId]);
 
     useEffect(() => {
-        let list = JSON.parse(localStorage.getItem('listSongCurrent'))
+        let list = JSON.parse(localStorage.getItem('listSongCurrent'));
+        list = list ? list : [];
         if (Object.keys(value.currentSong).length > 0) {
             let ids = list.map((song) => song.encodeId);
             if (!ids.includes(value.currentSong.encodeId)) {
@@ -47,7 +50,7 @@ function SidebarRight() {
             let cur = false;
             let newSongs = list.map((song) => {
                 if (song.encodeId == value.currentSong.encodeId) {
-                    song = {...song, status: 'current'};
+                    song = { ...song, status: 'current' };
                     cur = true;
                 } else if (!cur) {
                     song.status = 'prev';
@@ -67,6 +70,7 @@ function SidebarRight() {
             list.map((item, index) => {
                 if (index == 0) {
                     item.status = 'current';
+                    value.setCurrentSong(item);
                 } else {
                     item.status = 'next';
                 }

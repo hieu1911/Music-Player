@@ -5,7 +5,7 @@
 }
 
 .info {
-    padding: 0 40px;
+    padding: 10px 40px;
     align-items: center;
     text-align: center;
 
@@ -25,6 +25,24 @@
     p {
         font-size: 1.8rem;
         padding: 4px 0;
+    }
+
+    .playmusic {
+        border-radius: 50%;
+        animation-name: rotate;
+        animation-duration: 30s;
+        animation-iteration-count: infinite;
+    }
+}
+
+
+@keyframes rotate {
+    from {
+        rotate: 0deg;
+    }
+    
+    to {
+        rotate: 360deg;
     }
 }
 

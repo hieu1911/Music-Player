@@ -7,6 +7,7 @@ function DataProvider({ children }) {
     const [playlist, setPlaylist] = useState({})
     const [playlistCurrentId, setPlaylistCurrentId] = useState('')
     const [currentSong, setCurrentSong] = useState({})
+    const [playMusic, setPlayMusic] = useState(false)
 
     const value = {
         searchResult,
@@ -17,6 +18,8 @@ function DataProvider({ children }) {
         setPlaylistCurrentId,
         currentSong,
         setCurrentSong,
+        playMusic,
+        setPlayMusic,
     }
 
     return (
