@@ -16,6 +16,22 @@ export const getInfoSong = (songId) =>
         }
     })
 
+export const getVideo = (videoId) => 
+    new Promise(async (resolve, reject) => {
+        try {
+            let response = await httpRequest({
+                url: '/video',
+                method: 'GET',
+                params: {
+                    id: videoId
+                },
+            })
+            resolve(response)
+        } catch(err) {
+            reject(err)
+        }
+    }) 
+
 export const getSong = (songId) =>
     new Promise(async (resolve, reject) => {
         try {
@@ -132,12 +148,17 @@ export const getTop100 = () =>
         }
     })
 
-export const getListMV = () =>
+export const getListMV = (mvId, page = 1, count = 100) =>
     new Promise(async (resolve, reject) => {
         try {
             let response = await httpRequest({
                 url: '/listmv',
-                method: 'GET'
+                method: 'GET',
+                params: {
+                    id: mvId,
+                    page: page,
+                    count: count
+                }
             })
             resolve(response)
         } catch(err) {
@@ -150,19 +171,6 @@ export const getCategory = () =>
         try {
             let response = await httpRequest({
                 url: '/category',
-                method: 'GET'
-            })
-            resolve(response)
-        } catch(err) {
-            reject(err)
-        }
-    })
-
-export const getMV = () => 
-    new Promise(async (resolve, reject) => {
-        try {
-            let response = await httpRequest({
-                url: '/mv',
                 method: 'GET'
             })
             resolve(response)

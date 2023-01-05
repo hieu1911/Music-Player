@@ -11,7 +11,7 @@ function Menu({ items = [], onClick }) {
     };
 
     return (
-        <div className={cx('wrapper-menu')} onClick={() => onClick(items)}>
+        <div className={cx('wrapper-menu')}>
             {renderItems()}
         </div>
     );

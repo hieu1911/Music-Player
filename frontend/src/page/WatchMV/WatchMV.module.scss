@@ -1,0 +1,10 @@
+.content {
+    video {
+        width: calc(100vw - var(--default-layout-sidebar-width) * 2);
+        padding: 28px;
+    }
+}
+
+.controller {
+    
+}

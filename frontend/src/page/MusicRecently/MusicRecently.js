@@ -35,7 +35,7 @@ function MusicRecently() {
         {musicApi.items && playlistApi.items ? <div className={cx('wrapper')}>
             <div className={cx('navbar')}>
                 <h2>RECENTLY</h2>
-                <h4 className={cx({active: btnType == 'MUSIC'})} onClick={() => setBtnType('MUSIC')}>BÀI HÁT</h4>
+                <h4 className={cx({active: btnType == 'MUSIC'})} onClick={() => setBtnType('MUSIC')}>SONGS</h4>
                 <h4 className={cx({active: btnType == 'PLAYLIST'})} onClick={() => setBtnType('PLAYLIST')}>PLAYLIST</h4>
             </div>
             {btnType == 'MUSIC' ? <div className={cx('music-container')}>

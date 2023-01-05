@@ -13,6 +13,7 @@ import MusicRecently from '../page/MusicRecently/MusicRecently';
 import Search from '../page/Search/Search';
 import PlaylistDetail from '../page/PlaylistDetail/PlaylistDetail.js';
 import Lyric from '../page/Lyric/Lyric.js';
+import WatchMV from '../page/WatchMV/WatchMV.js';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -30,6 +31,7 @@ const publicRoutes = [
     { path: config.routes.searchpage, component: Search },
     { path: config.routes.playlistDetail, component: PlaylistDetail},
     { path: config.routes.lyric, component: Lyric},
+    { path: config.routes.video, component: WatchMV}
 ];
 
 const privateRoutes = [];

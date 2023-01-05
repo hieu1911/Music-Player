@@ -14,6 +14,7 @@ const routes = {
     searchpage: '/search',
     playlistDetail: '/playlistDetail',
     lyric: '/lyric',
+    video: '/video'
 };
 
 export default routes;
