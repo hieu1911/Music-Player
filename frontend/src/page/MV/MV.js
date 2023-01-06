@@ -26,7 +26,7 @@ function MV() {
                 'OTHERS': responseOTHER.data.data.items,
             }
 
-            console.log(MVItemsApi)
+            // console.log(MVItemsApi)
 
             setMVItems(MVItemsApi)
         };
@@ -47,9 +47,6 @@ function MV() {
                 </div>
             </div>
             <div className={cx('container')}>
-            {
-                console.log(MVItems[MVType])
-            }
                 {MVItems[MVType].map((item, index) => <span key={index} className={cx('item')}>
                     <MVItem data={item}/>
                 </span>)}
