@@ -1,7 +1,7 @@
 ## Demo
 https://music-89ba7.web.app
 ## Lưu ý: 
-* Click vào link và đợi 1 thời gian để tải các bài hát
+* Click vào link và đợi 1 thời gian để tải các bài hát (2-3 phút)
 * Có một số bài VIP không thể nghe được chỉ xem được ảnh
 * Các bài trong Library/Song đều nghe được
 
